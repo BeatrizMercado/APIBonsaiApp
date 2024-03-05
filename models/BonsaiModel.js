@@ -28,3 +28,5 @@ const Bonsai = sequelize.define('bonsais', {
   
   // `sequelize.define` also returns the model
   console.log(Bonsai === sequelize.models.Bonsai); // true
+
+  export default Bonsai
