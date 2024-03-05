@@ -24,7 +24,8 @@ const Bonsai = connection_db.define('bonsais', {
         allowNull: false
       }
   }, {
-    // Other model options go here
+    // tableName: 'bonsais', // Nombre de la tabla en la base de datos
+    timestamps: false // Deshabilitar los campos createdAt y updatedAt
   });
   
   // `sequelize.define` also returns the model
