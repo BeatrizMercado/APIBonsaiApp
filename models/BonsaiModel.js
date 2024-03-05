@@ -1,7 +1,7 @@
-import { Sequelize, DataTypes, Model } from "sequelize";
+import { DataTypes } from "sequelize";
 import connection_db from "../database/connection_db.js";
 
-const BonsaiModel = connection_db.define('bonsais', {
+const BonsaiModel = connection_db.define('Bonsais', {
     // Model attributes are defined here
     specie: {
       type: DataTypes.STRING,
@@ -24,7 +24,7 @@ const BonsaiModel = connection_db.define('bonsais', {
         allowNull: false
       }
   }, {
-    // tableName: 'bonsais', // Nombre de la tabla en la base de datos
+    tableName: 'bonsais', // Nombre de la tabla en la base de datos
     timestamps: false // Deshabilitar los campos createdAt y updatedAt
   });
   
