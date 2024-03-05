@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes, Model } from "sequelize";
 import connection_db from "../database/connection_db.js";
 
-const Bonsai = connection_db.define('bonsais', {
+const BonsaiModel = connection_db.define('bonsais', {
     // Model attributes are defined here
     specie: {
       type: DataTypes.STRING,
@@ -29,6 +29,7 @@ const Bonsai = connection_db.define('bonsais', {
   });
   
   // `sequelize.define` also returns the model
-  console.log(Bonsai === connection_db.models.Bonsai); // true
 
-  export default Bonsai
+ 
+
+  export default BonsaiModel
