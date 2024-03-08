@@ -1,13 +1,12 @@
 import connection_db from "./database/connection_db.js";
 import BonsaiModel from "./models/BonsaiModel.js";
 import express from "express";
-import { PORT } from "./config.js";
+import { PORT } from './config.js';
+import BonsaiRouter from './routes/BonsaiRouter.js'
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hola, esta es una api básica')
-})
+app.use("/api", BonsaiRouter) 
 
 try {
     await connection_db.authenticate();
@@ -18,7 +17,6 @@ try {
     console.error('Unable to connect to the database:', error);
   }
 
-app.listen(PORT, () => {
-  console.log(`Escuchando en el puerto http://localhost:${PORT}`)
-});
-  
+  app.listen(PORT, () => {
+    console.log(`Server up in http://localhost:${PORT}`);
+  });
