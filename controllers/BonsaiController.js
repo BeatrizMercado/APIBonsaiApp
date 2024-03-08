@@ -22,4 +22,19 @@ export const deleteBonsai = async (request, response) => {
     }
 }
 
+export const createBonsai = async (request, response) => {
+    try {
+        console.log("Request body:", request.body);
+        const newBonsai = await BonsaiModel.create({
+            abonated: request.body.abonated,
+            specie: request.body.specie,
+            trasplanted: request.body.trasplanted,
+            notes: request.body.notes,
+            images: request.body.images
+        });
 
+        response.status(201).json(newBonsai);
+    } catch (error) {
+        response.status(500).json({ message: error.message });
+    }
+};

@@ -6,7 +6,8 @@ import BonsaiRouter from './routes/BonsaiRouter.js'
 
 const app = express();
 
-app.use("/api", BonsaiRouter) 
+app.use("/api", BonsaiRouter);
+app.use(express.json());
 
 try {
     await connection_db.authenticate();

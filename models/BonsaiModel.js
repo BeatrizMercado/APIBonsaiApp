@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import connection_db from "../database/connection_db.js";
 
 const BonsaiModel = connection_db.define('Bonsai', {
-    // Model attributes are defined here
+
     specie: {
       type: DataTypes.STRING,
       allowNull: false
