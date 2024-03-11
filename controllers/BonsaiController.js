@@ -24,8 +24,6 @@ export const deleteBonsai = async (request, response) => {
 
 export const createBonsai = async (request, response) => {
     try {
-        // console.log("Request body:", request.body);
-
         const newBonsai = await BonsaiModel.create({
             abonated: request.body.abonated,
             specie: request.body.specie,
