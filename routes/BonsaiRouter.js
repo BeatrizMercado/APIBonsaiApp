@@ -3,6 +3,7 @@ import { getAllBonsais } from "../controllers/BonsaiController.js";
 import { deleteBonsai } from "../controllers/BonsaiController.js";
 import { createBonsai } from "../controllers/BonsaiController.js";
 import { updateBonsai } from  "../controllers/BonsaiController.js";
+import { getOneBonsai } from "../controllers/BonsaiController.js";
 
 const router = express.Router();
 
@@ -10,4 +11,5 @@ router.get("/", getAllBonsais);
 router.delete("/:id", deleteBonsai);
 router.post("/", createBonsai);
 router.put("/:id", updateBonsai);
+router.get("/:id", getOneBonsai);
 export default router

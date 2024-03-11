@@ -57,3 +57,17 @@ export const updateBonsai = async (request, response) => {
        })
     }
 
+    export const getOneBonsai = async (request, response) => {
+
+        try {
+            const { id } =request.params;
+            const bonsais =  await BonsaiModel.findOne({ where: { id }});
+            response.status(200).json(bonsais);
+        }
+        catch(error){
+            response.json({message: error.message});
+        }
+    }
+
+
+
