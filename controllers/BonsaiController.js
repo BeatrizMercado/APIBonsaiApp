@@ -62,4 +62,17 @@ export const updateBonsai = async (request, response) => {
   }
 };
 
+
 //metodo getbyId//
+export const getByIdBonsai = async (request, response) => {   //metodo get//
+
+    try {
+        const {id} = request.params;
+        const bonsais =  await BonsaiModel.findOne({ where: {id}});
+        response.status(200).json(bonsais);
+    }
+
+    catch(error){
+        response.json({message: error.message});
+    }
+}
