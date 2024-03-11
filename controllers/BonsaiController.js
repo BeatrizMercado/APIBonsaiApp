@@ -56,3 +56,19 @@ export const updateBonsai = async (request, response) => {
         response.status(500).json({ message: error.message });
     }
 };
+
+export const getBonsaiById = async (request, response) => {
+    try {
+        const { id } = request.params;
+        const bonsai = await BonsaiModel.findByPk(id);
+        
+        if (!bonsai) {
+            return response.status(404).json({ message: 'Bonsai not found' });
+        }
+        
+        response.status(200).json(bonsai);
+    } catch (error) {
+        console.error(error);
+        response.status(500).json({ message: 'Internal server error' });
+    }
+}
