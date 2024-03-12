@@ -1,7 +1,8 @@
 import express from "express";
 import { getAllBonsais, deleteBonsai, createBonsai, updateBonsai, getBonsaiById } from "../controllers/BonsaiController.js";
 
-import { validateBonsai, handleValidationResults } from "../validators/BonsaiValidation.js";
+import { validateBonsai } from "../validators/BonsaiValidation.js";
+import { handleValidationResults } from "../helpers/validationHelper.js";
 
 
 const router = express.Router();

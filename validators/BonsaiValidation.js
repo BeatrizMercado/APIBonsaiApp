@@ -1,4 +1,4 @@
-import { body, validationResult } from "express-validator";
+import { body } from "express-validator";
 
 export const validateBonsai = [
     body('specie')
@@ -42,10 +42,3 @@ export const validateBonsai = [
     .notEmpty().withMessage('El campo de imagen no puede estar vacío.')
 ]
 
-export const handleValidationResults = (request, response, next) => {
-    const errors = validationResult(request);
-    if (!errors.isEmpty()) {
-        return response.status(422).json({ errors: errors.array() });
-    }
-    next();
-};
