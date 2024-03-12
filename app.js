@@ -7,7 +7,7 @@ import BonsaiRouter from './routes/BonsaiRouter.js'
 const app = express();
 
 app.use(express.json());
-app.use("/api", BonsaiRouter);
+app.use("/api", BonsaiRouter); //aqui decido como se va a llamar mi direccion url/api//
 
 
 try {
@@ -22,3 +22,5 @@ try {
   app.listen(PORT, () => {
     console.log(`Server up in http://localhost:${PORT}`);
   });
+
+  
