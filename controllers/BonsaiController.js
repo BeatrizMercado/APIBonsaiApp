@@ -16,7 +16,7 @@ export const deleteBonsai = async (request, response) => {
     try {
         const { id } =request.params;
         const bonsai = await BonsaiModel.destroy({ where: { id }});
-        response.status(200).json(bonsai);
+        response.status(204).json(bonsai);
     } catch (error) {
         response.status(500).json({ message: error.message });
     }

@@ -1,4 +1,5 @@
-import { body } from "express-validator";
+import { body } from "express-validator"; 
+// import { handleValidationResults } from "../helpers/validationHelper";
 
 export const validateBonsai = [
     body('specie')
