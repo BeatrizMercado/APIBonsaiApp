@@ -1,15 +1,15 @@
 import express from "express";
-import { getAllBonsais } from "../controllers/BonsaiController.js";
-import { deleteBonsai } from "../controllers/BonsaiController.js";
-import { createBonsai } from "../controllers/BonsaiController.js";
-import { updateBonsai } from  "../controllers/BonsaiController.js";
-import { getOneBonsai } from "../controllers/BonsaiController.js";
+import { getAllBonsais, deleteBonsai, createBonsai, updateBonsai, getOneBonsai } from "../controllers/BonsaiController.js";
+
+import { validateBonsai } from "../validators/BonsaiValidation.js";
+import { handleValidationResults } from "../helpers/validationHelper.js";
+
 
 const router = express.Router();
 
 router.get("/", getAllBonsais);
 router.delete("/:id", deleteBonsai);
-router.post("/", createBonsai);
-router.put("/:id", updateBonsai);
+router.post("/", validateBonsai, handleValidationResults, createBonsai);
+router.put("/:id", validateBonsai, handleValidationResults, updateBonsai);
 router.get("/:id", getOneBonsai);
 export default router
