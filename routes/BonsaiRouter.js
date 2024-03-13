@@ -15,4 +15,5 @@ router.delete("/:id", deleteBonsai);
 router.post("/",validateCreate, createBonsai);
 router.put("/:id", validateCreate,updateBonsai);
 router.get("/:id", getByIdBonsai);
+
 export default router
