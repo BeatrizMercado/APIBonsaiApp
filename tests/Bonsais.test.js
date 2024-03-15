@@ -11,7 +11,7 @@ expect(Array.isArray(response.body)).toBe(true);
 expect(response.status).toBe(200);
 });
 
-
+//test post//
 test('lo que yo quiera',async()=>{
 const response = await api.post('/api').send({
     "specie": "Hola",
