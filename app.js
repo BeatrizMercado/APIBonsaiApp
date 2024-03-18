@@ -4,7 +4,7 @@ import express from "express";
 import { PORT } from './config.js';
 import BonsaiRouter from './routes/BonsaiRouter.js'
 
-const app = express();
+export const app = express();
 
 app.use(express.json());
 app.use("/api", BonsaiRouter);
@@ -19,6 +19,6 @@ try {
     console.error('Unable to connect to the database:', error);
   }
 
-  app.listen(PORT, () => {
+  export const server = app.listen(PORT, () => {
     console.log(`Server up in http://localhost:${PORT}`);
   });
