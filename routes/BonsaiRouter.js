@@ -6,10 +6,6 @@ import { updateBonsai } from "../controllers/BonsaiController.js";
 import { getByIdBonsai } from "../controllers/BonsaiController.js";
 import { validateCreate } from "../validator/validatorBonsai.js";
 
-import { getAllBonsais, deleteBonsai, createBonsai, updateBonsai, getBonsaiById } from "../controllers/BonsaiController.js";
-
-import { validateBonsai } from "../validators/BonsaiValidation.js";
-import { handleValidationResults } from "../helpers/validationHelper.js";
 
 
 const router = express.Router();

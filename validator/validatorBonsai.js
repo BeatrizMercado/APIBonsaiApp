@@ -4,11 +4,11 @@ import { validateResult } from "./validateHelpers.js";
 
 
 export const validateCreate =[ 
-  check('spice')
+  check('specie')
   .exists()
   .notEmpty()
-  .isNumeric()
-  .withMessage('El campo spice debe ser un número'),
+  .isString()
+  .withMessage('El campo specie debe ser una cadena de texto'),
 
   check('abonated')
   .exists()
@@ -30,8 +30,8 @@ export const validateCreate =[
 
   check('images')
   .exists()
-  .isEmpty()
-  .isURL()
+  .notEmpty()
+  .isString()
   .withMessage('El campo images debe ser una URL válida'),
 (req,res, next) => {    //esto tiene que retornar error verificar, o que siga el flujo de la continuidad de su contolador//
     validateResult(req,res,next)

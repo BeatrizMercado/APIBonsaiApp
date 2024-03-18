@@ -22,7 +22,7 @@ export const deleteBonsai = async (request, response) => {  //metodo delete//
     }
 }
 
-export const createBonsai = async (request, response) => { //metodo post//
+export const createBonsai = async (request, response) => {
     try {
         const newBonsai = await BonsaiModel.create(
             request.body
@@ -33,6 +33,8 @@ export const createBonsai = async (request, response) => { //metodo post//
         response.status(500).json({ message: error.message });
     }
 };
+
+
 
 //update//
 export const updateBonsai = async (request, response) => {

@@ -4,6 +4,7 @@ import express from "express";
 import { PORT } from './config.js';
 import BonsaiRouter from './routes/BonsaiRouter.js'
 
+
 const app = express();
 
 app.use(express.json());
@@ -23,4 +24,4 @@ try {
     console.log(`Server up in http://localhost:${PORT}`);
   });
 
-  
+  export default app;

@@ -1,6 +1,7 @@
 import request from 'supertest'
 import app from  '../app'
 
+
 const api = request(app);
 
 describe('Testing CRUD Bonsais',()=>{
@@ -12,17 +13,18 @@ expect(response.status).toBe(200);
 });
 
 //test post//
-test('lo que yo quiera',async()=>{
-const response = await api.post('/api').send({
-    "specie": "Hola",
-    "abonated": "2023-09-03",
-    "trasplanted": "2021-01-01",
-    "notes": "pino pequenio",
-    "images": "https://www.aragon.es/-/arbol-singular-pino-del-escobon"
+test('Post response should be an object and return status 201', async ()=> {
+    const response = await api.post('/api').send({
+        specie: "test",
+        abonated: "2020-02-02",
+        trasplanted: "2020-02-02",
+        notes: "test",
+        images: "https://damiandeluca.com"
+    });
+
+    expect(typeof response.body).toBe('object');
+    expect(response.status).toBe(201);
 })
 
-expect(typeof response.body).toBe('object');
-expect(response.status).toBe(201)}
-);
-});
+})
 
