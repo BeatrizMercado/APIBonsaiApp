@@ -2,10 +2,12 @@ import connection_db from "./database/connection_db.js";
 import BonsaiModel from "./models/BonsaiModel.js";
 import express from "express";
 import { PORT } from './config.js';
-import BonsaiRouter from './routes/BonsaiRouter.js'
+import BonsaiRouter from './routes/BonsaiRouter.js';
+import cors from "cors";
 
 export const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use("/api", BonsaiRouter);
 
