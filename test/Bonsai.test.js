@@ -2,6 +2,7 @@ import request from 'supertest';
 import { app, server } from '../app';
 import connection_db from '../database/connection_db';
 import BonsaiModel from '../models/BonsaiModel';
+import moment from 'moment';
 
 const api = request(app);
 
@@ -20,8 +21,90 @@ describe('Testing CRUD bonsais', () => {
             expect(typeof response.body).toBe('object');
             expect(response.status).toBe(201);
         
-    })
+        });
 
+        test('Invalid URL should return error message and return status 422', async() => {
+            const response = await api.post('/api').send({
+                "specie": "Hola",
+                "abonated": "2023-09-03",
+                "trasplanted": "2021-01-01",
+                "notes": "pino pequenio",
+                "images": "URL no válida"
+            });
+
+            const errorMessage = response.body.errors[0].msg;
+            expect(errorMessage).toBe('El campo de imagen debe ser una URL válida');
+            expect(typeof response.body).toBe('object');
+            expect(response.status).toBe(422);
+    
+        });
+
+        test('Error should be returned if the abonated date is in the future and return status 422', async ()=> {
+            const futureDate = moment().add(1, 'day').format('YYYY-MM-DD');
+            const actualDate = moment().format('YYYY-MM-DD');
+            const response = await api.post('/api').send({
+                "specie": "test",
+                "abonated": futureDate,
+                "trasplanted": actualDate,
+                "notes": "test notes",
+                "images": "https://www.aragon.es/-/arbol-singular-pino-del-escobon"
+            });
+
+            const errorMessage = response.body.errors[0].msg;
+            expect(errorMessage).toBe('La fecha de abono debe ser menor o igual al día de hoy.');
+            expect(typeof response.body).toBe('object');
+            expect(response.status).toBe(422)
+        });
+
+        test('Error should be returned if the trasplanted date is in the future and return status 422', async ()=> {
+            const futureDate = moment().add(1, 'day').format('YYYY-MM-DD');
+            const actualDate = moment().format('YYYY-MM-DD');
+            const response = await api.post('/api').send({
+                "specie": "test",
+                "abonated": actualDate,
+                "trasplanted": futureDate,
+                "notes": "test notes",
+                "images": "https://www.aragon.es/-/arbol-singular-pino-del-escobon"
+            });
+
+            const errorMessage = response.body.errors[0].msg;
+            expect(errorMessage).toBe('La fecha de trasplante debe ser menor o igual al día de hoy.');
+            expect(typeof response.body).toBe('object');
+            expect(response.status).toBe(422);
+        });
+
+        test('Error should be returned if notes have more than 255 characters', async() => {
+            let badNotes = "";
+            for (let i=0; i<256; i++) {
+                badNotes = badNotes + "a";
+            }
+            console.log(badNotes.length);
+
+            const response = await api.post('/api').send({
+                "specie": "Hola",
+                "abonated": "2023-09-03",
+                "trasplanted": "2021-01-01",
+                "notes": badNotes,
+                "images": "https://www.aragon.es/-/arbol-singular-pino-del-escobon"
+            });
+
+            const errorMessage = response.body.errors[0].msg;
+            expect(errorMessage).toBe('Las notas deben tener una longitud máxima de 255 caracteres.');
+            expect(typeof response.body).toBe('object');
+            expect(response.status).toBe(422);
+        });
+
+        test('An array of errors should be returned if there is more than one error', async ()=> {
+            const response = await api.post('/api').send({
+                    "specie": 123,
+                    "abonated": "2025-09-03",
+                    "trasplanted": "2025-01-01",
+                    "notes": 123,
+                    "images": "Url no válida"
+            })
+            expect(Array.isArray(response.body.errors)).toBe(true)
+            console.log(response.body.errors.length)
+        });
     });
 
     describe('GET', ()=> {
