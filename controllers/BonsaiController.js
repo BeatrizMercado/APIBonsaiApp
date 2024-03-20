@@ -51,7 +51,7 @@ export const updateBonsai = async (request, response) => {
 
         const updatedBonsai = await BonsaiModel.findByPk(id);
 
-        response.status(200).json({ message: 'Bonsai updated successfully', bonsai: updatedBonsai });
+        response.status(201).json({ message: 'Bonsai updated successfully', bonsai: updatedBonsai });
     } catch (error) {
         response.status(500).json({ message: error.message });
     }
