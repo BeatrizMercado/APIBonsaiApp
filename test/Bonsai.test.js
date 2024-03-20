@@ -44,7 +44,6 @@ describe('Testing CRUD bonsais', () => {
                 "images": "https://www.aragon.es/-/arbol-singular-pino-del-escobon"
             })
         })
-        console.log(createdBonsai);
 
         afterAll(async()=> {
             await BonsaiModel.destroy({where: {id: createdBonsai.id}})

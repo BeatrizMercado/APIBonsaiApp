@@ -33,7 +33,7 @@ export const validateBonsai = [
     }),
 
     body('notes')
-    .matches(/^[\w\s.,!()-]+$/).withMessage('Las notas solo permiten caracteres alfanuméricos y algunos caracteres especiales simples.')
+    .matches(/^[\w\s.,!()-ñ]+$/).withMessage('Las notas solo permiten caracteres alfanuméricos y algunos caracteres especiales simples.')
     .notEmpty().withMessage('Las notas no pueden estar vacías.')
     .isLength({max:255}).withMessage('Las notas deben tener una longitud máxima de 255 caracteres.'),
 
